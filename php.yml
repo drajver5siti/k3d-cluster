@@ -22,7 +22,7 @@ metadata:
     name: php
 
 spec:
-    replicas: 1
+    replicas: 2
     selector:
         matchLabels:
             app: php
@@ -36,7 +36,7 @@ spec:
             containers:
                 -
                     name: php
-                    image: drajver5siti/totp-php
+                    image: drajver5siti/totp-php:1.1
                     ports:
                         -
                             containerPort: 9000

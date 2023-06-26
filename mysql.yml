@@ -14,13 +14,11 @@ spec:
 ---
 
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
     name: mysql
 spec:
     replicas: 1
-    strategy:
-        type: Recreate
     selector:
         matchLabels:
             app: mysql
@@ -47,7 +45,10 @@ spec:
                         
                         -
                             name: MARIADB_ROOT_PASSWORD_HASH
-                            value: "*E4AC4150AA7941E1CEA8380831B29A6512A55948"
+                            valueFrom:
+                                secretKeyRef:
+                                    name: db-secrets
+                                    key: mariadb-root-password-hash
 
             volumes:
                 -
